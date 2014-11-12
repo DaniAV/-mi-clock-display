@@ -8,25 +8,43 @@
 public class NumberDisplay
 {
     // instance variables - replace the example below with your own
-    private int valorDisplay;
     private int limitDisplay;
+    private int valorDisplay;
+   
     /**
      * Constructor para los objetos de la clase NumberDisplay
      */
     public NumberDisplay(int limit, int valor)
     {
         // initialise instance variables
-        valorDisplay = 00;
+        valorDisplay = valor;
         limitDisplay = limit;
     }
 
     /**
-     * Método que devuelve el valor actual del display en forma de cadena de dos caracteres 
+     * Método que fija el valor actual del display al valor pasado como parámetro 
      */
     public int setValue(int valor)
     {
-        // put your code here
+         return valorDisplay = valor;
+    }
+    
+    /**
+     * Método que devuelve el valor actual del display.
+     */
+    public String getDisplayValue()
+    {
         
-        return valorDisplay = valor;
+        int var2 = valorDisplay;
+        if (var2<10)
+            {
+                return "0" + var2;
+            }
+        
+        else 
+            {    
+                return "" + var2;
+            }
+               
     }
 }
