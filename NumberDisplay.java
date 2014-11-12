@@ -55,4 +55,13 @@ public class NumberDisplay
         {
             return valorDisplay;
         }
+    
+    /**
+     * Método que incremente en 1 el display y lo hace volver al principio si alcanza 
+     * el limite (increment)
+     */
+    public void increment()
+    {
+        valorDisplay = valorDisplay+1;
+    }
 }
