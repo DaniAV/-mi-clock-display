@@ -24,9 +24,9 @@ public class NumberDisplay
     /**
      * Método que fija el valor actual del display al valor pasado como parámetro 
      */
-    public int setValue(int valor)
+    public void setValue(int valor)
     {
-         return valorDisplay = valor;
+         valorDisplay = valor;
     }
     
     /**
@@ -63,5 +63,10 @@ public class NumberDisplay
     public void increment()
     {
         valorDisplay = valorDisplay+1;
+        if (valorDisplay > limitDisplay)
+        {
+
+            valorDisplay = 0;
+        }
     }
 }
