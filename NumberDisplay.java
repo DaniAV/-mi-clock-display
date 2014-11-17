@@ -14,10 +14,10 @@ public class NumberDisplay
     /**
      * Constructor para los objetos de la clase NumberDisplay
      */
-    public NumberDisplay(int limit, int valor)
+    public NumberDisplay(int limit)
     {
         // initialise instance variables
-        valorDisplay = valor;
+        valorDisplay = 0;
         limitDisplay = limit;
     }
 
@@ -26,7 +26,10 @@ public class NumberDisplay
      */
     public void setValue(int valor)
     {
-         valorDisplay = valor;
+        if (valor < limitDisplay && valorDisplay >= 0)
+        {
+            valorDisplay = valor;
+        }
     }
     
     /**
@@ -63,7 +66,7 @@ public class NumberDisplay
     public void increment()
     {
         valorDisplay = valorDisplay+1;
-        if (valorDisplay > limitDisplay)
+        if (valorDisplay >= limitDisplay)
         {
 
             valorDisplay = 0;
