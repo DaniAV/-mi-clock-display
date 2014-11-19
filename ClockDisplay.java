@@ -11,15 +11,16 @@ public class ClockDisplay
     private NumberDisplay horas;
     private NumberDisplay minutos;
     private String horaActual;
+    private int horapm;
     
     /**
      * Constructor para fijar las horas y minutos a cero
      */
     public ClockDisplay()
     {
-      horas = new NumberDisplay (23);
-      minutos = new NumberDisplay (59);
-      horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
+      horas = new NumberDisplay (24);
+      minutos = new NumberDisplay (60);
+      updateDisplay();
       
     }
    
@@ -29,11 +30,11 @@ public class ClockDisplay
     public ClockDisplay(int nuevaHora, int nuevosMinutos)
     {
         // initialise instance variables
-        horas = new NumberDisplay (23);
-        minutos = new NumberDisplay (59);
+        horas = new NumberDisplay (24);
+        minutos = new NumberDisplay (60);
         horas.setValue(nuevaHora);
         minutos.setValue(nuevosMinutos);
-        horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
+        updateDisplay();
     }
     
     /**
@@ -42,8 +43,9 @@ public class ClockDisplay
      */
     public void setTime (int actualHora, int actualMinutos)    
     {
-       horas = new NumberDisplay (actualHora);
-       minutos = new NumberDisplay (actualMinutos);
+       horas.setValue(actualHora);
+       minutos.setValue(actualMinutos);
+       updateDisplay();
     }
     
     /**
@@ -51,7 +53,9 @@ public class ClockDisplay
      */
     public String getTime ()
     {
-        horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
+        updateDisplay(); //esta linea
+        //se podria omitir ya que el valor horaActual, se mantiene actualizado siempre qeu
+        //se utilizan los metodos anteriores.
         return horaActual;
     }   
     
@@ -62,5 +66,37 @@ public class ClockDisplay
     public void timeTick ()
     {
         minutos.increment();
+        
+        if (minutos.getValue() == 0)
+        {
+            horas.increment();
+        }
+        
+        horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
+        
+    }
+    
+    /**
+     * Actualiza el atributo display
+     */
+    private void updateDisplay()
+    {
+        if (horas.getValue() < 13)
+        {
+             horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " a.m";
+        }
+        else 
+        {
+            horapm = (horas.getValue() - 12);
+            horaActual = horapm + ":" + minutos.getDisplayValue() + " p.m";
+        }
     }
 }
+       
+       
+  
+    
+    
+    
+
+

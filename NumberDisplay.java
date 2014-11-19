@@ -33,7 +33,8 @@ public class NumberDisplay
     }
     
     /**
-     * Método que devuelve el valor actual del display.
+     * Método que devuelve una cadena de dos caracteres con el valor 
+     * actual del display.
      */
     public String getDisplayValue()
     {
