@@ -11,7 +11,7 @@ public class ClockDisplay
     private NumberDisplay horas;
     private NumberDisplay minutos;
     private String horaActual;
-    private int horapm;
+   
     
     /**
      * Constructor para fijar las horas y minutos a cero
@@ -81,14 +81,22 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-        if (horas.getValue() < 13)
+        if (horas.getValue() < 12)
         {
              horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " a.m";
         }
         else 
         {
-            horapm = (horas.getValue() - 12);
-            horaActual = horapm + ":" + minutos.getDisplayValue() + " p.m";
+            int horapm = (horas.getValue() - 12);
+                if (horapm < 10)
+                {
+                    horaActual = "0" + horapm + ":" + minutos.getDisplayValue() + " p.m";
+                }
+            else
+                {
+                     horaActual = horapm + ":" + minutos.getDisplayValue() + " p.m";
+                }
+           
         }
     }
 }
