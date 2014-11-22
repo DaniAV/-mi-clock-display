@@ -15,6 +15,7 @@ public class ClockDisplay
     private NumberDisplay año;
     private String horaActual;
     private String fechaActual;
+   
     /**
      * Constructor para fijar las horas y minutos, dia, mes y año a cero de un objeto
      */
@@ -41,9 +42,9 @@ public class ClockDisplay
         minutos = new NumberDisplay (60);
         horas.setValue(nuevaHora); 
         minutos.setValue(nuevosMinutos);
-        dia = new NumberDisplay (30);
-        mes = new NumberDisplay (12);
-        año = new NumberDisplay (99);
+        dia = new NumberDisplay (31);
+        mes = new NumberDisplay (13);
+        año = new NumberDisplay (100);
         dia.setValue(nuevoDia);
         mes.setValue(nuevoMes);
         año.setValue(nuevoAño);
@@ -91,22 +92,32 @@ public class ClockDisplay
         if (minutos.getValue() == 0)
         {
             horas.increment();
+                if (horas.getValue() == 0)
+                   {
+                       dia.increment();
+                       
+                    }
+                        if (dia.getValue() == 0)
+                            {
+                                dia.increment();
+                            }
+                            if (dia.getValue() == 1)
+                            {
+                                mes.increment();
+                               
+                            }
+                                if (mes.getValue() == 0 )
+                                {
+                                    mes.increment();
+                                }
+                                    if (mes.getValue() == 1)
+                                    {
+                                        año.increment();
+                                    }
+                    
         }
         
-        if (horas.getValue() > 24)
-        {
-            dia.increment();
-        }
         
-        if (dia.getValue() > 30)
-        {
-            mes.increment();
-        }
-        
-        if (mes.getValue() > 12)
-        {
-            año.increment();
-        }
         
         horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + "a.m";
         horaActual = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + "p.m";
@@ -127,7 +138,7 @@ public class ClockDisplay
             if (horas.getValue() == 0)
              {
 
-                 horaActual = "12" + ":" + minutos.getDisplayValue() + " p.m";
+                 horaActual = "12" + ":" + minutos.getDisplayValue() + " a.m";
                  fechaActual = dia.getDisplayValue() + "/" + mes.getDisplayValue() + "/" + año.getDisplayValue();
                
              }
@@ -140,9 +151,9 @@ public class ClockDisplay
                  fechaActual = dia.getDisplayValue() + "/" + mes.getDisplayValue() + "/" + año.getDisplayValue();
            
              }
-        }
         
-        else 
+        }
+           else 
         {
             int horapm = (horas.getValue() - 12);
             
@@ -158,7 +169,7 @@ public class ClockDisplay
                 fechaActual = dia.getDisplayValue() + "/" + mes.getDisplayValue() + "/" + año.getDisplayValue();
 
             }
-           
+            
             else
             {
                 horaActual = horapm + ":" + minutos.getDisplayValue() + " p.m";
@@ -167,7 +178,7 @@ public class ClockDisplay
             }
 
         }
-       
+        
     }
 }
        
